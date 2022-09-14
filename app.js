@@ -5,7 +5,9 @@ const includeUpperCaseElement = document.getElementById("UpperCase");
 const includeNumbersElement = document.getElementById("Numbers");
 const includeSymbolsElement = document.getElementById("Symbols");
 const passwordDisplay = document.getElementById("password");
+
 //password strength
+const passwordStrength = document.getElementById("passwordStrength");
 const level1 = document.body.querySelector(".color-bars");
 const level2 = document.body.querySelector(".level2");
 const level3 = document.body.querySelector(".level3");
@@ -24,6 +26,7 @@ form.addEventListener("submit", (e) => {
     includeNumbers,
     includeSymbols
   );
+
   passwordDisplay.innerHTML = password;
 });
 
@@ -75,33 +78,143 @@ function generatePassword(
       charCodes[Math.floor(Math.random() * charCodes.length)];
     passwordCharacter.push(String.fromCharCode(characterCode));
   }
-  // if (passwordCharacter.length <= 10) {
-  //   level1.style.backgroundColor = "red";
-  //   level2.style.backgroundColor = "transparent";
-  //   level3.style.backgroundColor = "transparent";
-  //   level4.style.backgroundColor = "transparent";
-  // } else if (
-  //   passwordCharacter.length <= 10 &&
-  //   (includeUpperCase || includeNumbers || includeSymbols)
-  // ) {
-  //   level1.style.backgroundColor = "yellow";
-  //   level2.style.backgroundColor = "transparent";
-  //   level3.style.backgroundColor = "transparent";
-  //   level4.style.backgroundColor = "transparent";
-  // } else if (
-  //   passwordCharacter.length > 10 &&
-  //   passwordCharacter.length <= 20 &&
-  //   (includeUpperCase || includeNumbers || includeSymbols)
-  // ) {
-  //   level1.style.backgroundColor = "yellow";
-  //   level2.style.backgroundColor = "yellow";
-  //   level3.style.backgroundColor = "transparent";
-  //   level4.style.backgroundColor = "transparent";
-  // } else if (passwordCharacter.length > 10 && passwordCharacter.length <= 20) {
-  //   level1.style.backgroundColor = "red";
-  //   level2.style.backgroundColor = "red";
-  //   level3.style.backgroundColor = "transparent";
-  //   level4.style.backgroundColor = "transparent";
-  // }
+
+  //level 1
+  if (passwordCharacter.length <= 10) {
+    level1.style.backgroundColor = "red";
+    level2.style.backgroundColor = "transparent";
+    level3.style.backgroundColor = "transparent";
+    level4.style.backgroundColor = "transparent";
+    passwordStrength.textContent = "WEAK";
+  }
+  if (
+    passwordCharacter.length <= 10 &&
+    (includeUpperCase || includeNumbers || includeSymbols)
+  ) {
+    level1.style.backgroundColor = "yellow";
+    level2.style.backgroundColor = "transparent";
+    level3.style.backgroundColor = "transparent";
+    level4.style.backgroundColor = "transparent";
+    passwordStrength.textContent = "WEAK";
+  }
+  if (
+    passwordCharacter.length <= 10 &&
+    ((includeUpperCase && includeNumbers) ||
+      (includeNumbers && includeSymbols) ||
+      (includeUpperCase && includeSymbols) ||
+      (includeUpperCase && includeSymbols && includeNumbers))
+  ) {
+    level1.style.backgroundColor = "green";
+    level2.style.backgroundColor = "transparent";
+    level3.style.backgroundColor = "transparent";
+    level4.style.backgroundColor = "transparent";
+    passwordStrength.textContent = "MEDIUM";
+  }
+
+  //level 2
+
+  if (passwordCharacter.length > 10 && passwordCharacter.length <= 30) {
+    level1.style.backgroundColor = "red";
+    level2.style.backgroundColor = "red";
+    level3.style.backgroundColor = "transparent";
+    level4.style.backgroundColor = "transparent";
+    passwordStrength.textContent = "MEDIUM";
+  }
+  if (
+    passwordCharacter.length > 10 &&
+    passwordCharacter.length <= 30 &&
+    (includeUpperCase || includeNumbers || includeSymbols)
+  ) {
+    level1.style.backgroundColor = "yellow";
+    level2.style.backgroundColor = "yellow";
+    level3.style.backgroundColor = "transparent";
+    level4.style.backgroundColor = "transparent";
+    passwordStrength.textContent = "MEDIUM";
+  }
+  if (
+    passwordCharacter.length > 10 &&
+    passwordCharacter.length <= 30 &&
+    ((includeUpperCase && includeNumbers) ||
+      (includeNumbers && includeSymbols) ||
+      (includeUpperCase && includeSymbols) ||
+      (includeUpperCase && includeSymbols && includeNumbers))
+  ) {
+    level1.style.backgroundColor = "green";
+    level2.style.backgroundColor = "green";
+    level3.style.backgroundColor = "transparent";
+    level4.style.backgroundColor = "transparent";
+    passwordStrength.textContent = "STRONG";
+  }
+
+  //level 3
+
+  if (passwordCharacter.length > 30 && passwordCharacter.length <= 70) {
+    level1.style.backgroundColor = "red";
+    level2.style.backgroundColor = "red";
+    level3.style.backgroundColor = "red";
+    level4.style.backgroundColor = "transparent";
+    passwordStrength.textContent = "STRONG";
+  }
+  if (
+    passwordCharacter.length > 30 &&
+    passwordCharacter.length <= 70 &&
+    (includeUpperCase || includeNumbers || includeSymbols)
+  ) {
+    level1.style.backgroundColor = "yellow";
+    level2.style.backgroundColor = "yellow";
+    level3.style.backgroundColor = "yellow";
+    level4.style.backgroundColor = "transparent";
+    passwordStrength.textContent = "STRONG";
+  }
+  if (
+    passwordCharacter.length > 30 &&
+    passwordCharacter.length <= 70 &&
+    ((includeUpperCase && includeNumbers) ||
+      (includeNumbers && includeSymbols) ||
+      (includeUpperCase && includeSymbols) ||
+      (includeUpperCase && includeSymbols && includeNumbers))
+  ) {
+    level1.style.backgroundColor = "green";
+    level2.style.backgroundColor = "green";
+    level3.style.backgroundColor = "green";
+    level4.style.backgroundColor = "transparent";
+    passwordStrength.textContent = "UNBREAKABLE";
+  }
+
+  //level 4
+
+  if (passwordCharacter.length > 70 && passwordCharacter.length <= 100) {
+    level1.style.backgroundColor = "red";
+    level2.style.backgroundColor = "red";
+    level3.style.backgroundColor = "red";
+    level4.style.backgroundColor = "red";
+    passwordStrength.textContent = "STRONG";
+  }
+  if (
+    passwordCharacter.length > 70 &&
+    passwordCharacter.length <= 100 &&
+    (includeUpperCase || includeNumbers || includeSymbols)
+  ) {
+    level1.style.backgroundColor = "yellow";
+    level2.style.backgroundColor = "yellow";
+    level3.style.backgroundColor = "yellow";
+    level4.style.backgroundColor = "yellow";
+    passwordStrength.textContent = "UNBREAKABLE";
+  }
+  if (
+    passwordCharacter.length > 70 &&
+    passwordCharacter.length <= 100 &&
+    ((includeUpperCase && includeNumbers) ||
+      (includeNumbers && includeSymbols) ||
+      (includeUpperCase && includeSymbols) ||
+      (includeUpperCase && includeSymbols && includeNumbers))
+  ) {
+    level1.style.backgroundColor = "green";
+    level2.style.backgroundColor = "green";
+    level3.style.backgroundColor = "green";
+    level4.style.backgroundColor = "green";
+    passwordStrength.textContent = "UNBREAKABLE";
+  }
+
   return passwordCharacter.join("");
 }

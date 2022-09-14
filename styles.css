@@ -164,6 +164,6 @@ button:hover {
   color: rgb(164, 255, 175);
 }
 .password-strength {
-  opacity: 0;
+  /* opacity: 0; */
   transition: opacity 0.3s;
 }
