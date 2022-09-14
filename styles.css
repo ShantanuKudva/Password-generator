@@ -42,12 +42,14 @@ body {
 }
 
 .password h1 {
+  width: 300px;
   opacity: 0.5;
 }
 
 .copy {
   height: 1.2rem;
-  margin: auto;
+  width: 1.2rem;
+  justify-self: end;
   translate: 9rem;
   fill: rgb(164, 255, 175);
   cursor: pointer;

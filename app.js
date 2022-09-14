@@ -12,6 +12,7 @@ const level1 = document.body.querySelector(".color-bars");
 const level2 = document.body.querySelector(".level2");
 const level3 = document.body.querySelector(".level3");
 const level4 = document.body.querySelector(".level4");
+const copy = document.body.querySelector(".copy");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -36,6 +37,15 @@ function generateArray(min, max) {
     array.push(i);
   }
   return array;
+}
+
+function copyToClipboard() {
+  var copyText = document.getElementById("password").innerText;
+  navigator.clipboard.writeText(copyText).then(() => {
+    // Alert the user that the action took place.
+    // Nobody likes hidden stuff being done under the hood!
+    alert(`${copyText} Copied to clipboard`);
+  });
 }
 
 const UPPER_CASE_CODES = generateArray(65, 90);
@@ -95,7 +105,7 @@ function generatePassword(
     level2.style.backgroundColor = "transparent";
     level3.style.backgroundColor = "transparent";
     level4.style.backgroundColor = "transparent";
-    passwordStrength.textContent = "WEAK";
+    passwordStrength.textContent = "MEDIUM ";
   }
   if (
     passwordCharacter.length <= 10 &&
